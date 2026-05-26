@@ -1,0 +1,11 @@
+{
+    "name": "mateu/curso",
+    "description": "MVC Structure",
+    "authors": [
+        {
+            "name": "Mateus",
+            "email": "mateusdeveloper@outlook.com"
+        }
+    ],
+    "require": {}
+}
