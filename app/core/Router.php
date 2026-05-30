@@ -1,32 +1,26 @@
 <?php 
-require_once __DIR__.'/Controller.php';
-include_once __DIR__.'/../controllers/errors/HttpErrorController.php';
+namespace App\core;
+
+use App\Controllers\Errors\HttpErrorController;
+use App\Controllers\HomeController;
 
 class Router {
     public function dispatch($url) {
         $url            = trim($url, '/');
         $parts          = $url ? explode('/', $url) : [];
         $controllerName = $parts[0] ?? 'Home';
-        $controllerName = ucfirst($controllerName).'Controller';
+        $controllerName = 'App\\Controllers\\'.ucfirst($controllerName).'Controller';
         $actionName     = $parts[1] ?? 'index';
 
-        if(!file_exists(__DIR__.'/../controllers/'.$controllerName.'.php')) {
-            $controller = new HttpErrorController();
-            $controller->NotFound();
-            return;
-        }
-
-        include_once __DIR__.'/../controllers/'.$controllerName.'.php';
-
         if(!class_exists($controllerName)) {
-            throw new Exception('Controller class not found: '.$controllerName);
+            throw new \Exception('Controller class not found: '.$controllerName);
         }
 
         $controller = new $controllerName();
 
         if(!method_exists($controller, $actionName)) {
             $controller = new HttpErrorController();
-            $controller->NotFound();
+            $controller->notFound();
             return;
         }
 

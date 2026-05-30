@@ -1,5 +1,8 @@
 <?php 
-require_once __DIR__.'/../models/Usuario.php';
+namespace App\Controllers;
+
+use App\Core\Controller;
+use App\Models\Usuario;
 
 class HomeController extends Controller {
     public function index() {

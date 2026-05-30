@@ -1,9 +1,13 @@
 <?php 
+namespace App\Controllers\Errors;
+
+use App\Core\Controller;
+
 class HttpErrorController extends Controller {
     /**
      * @method Retorna o status no cabeçalho HTTP 403 e exibe a página de erro 403
      */
-    public function Unauthorized() {
+    public function unauthorized() {
         http_response_code(403);
         $this->view('errors/403');
     }
@@ -11,7 +15,7 @@ class HttpErrorController extends Controller {
     /**
      * @method Retorna o status no cabeçalho HTTP 404 e exibe a página de erro 404
      */
-    public function NotFound() {
+    public function notFound() {
         http_response_code(404);
         $this->view('errors/404');
     }
@@ -19,7 +23,7 @@ class HttpErrorController extends Controller {
     /**
      * @method Retorna o status no cabeçalho HTTP 500 e exibe a página de erro 500
      */
-    public function InternalServerError() {
+    public function internalServerError() {
         http_response_code(500);
         $this->view('errors/500');
     }
