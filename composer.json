@@ -7,5 +7,12 @@
             "email": "mateusdeveloper@outlook.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
     "require": {}
 }
+
+
