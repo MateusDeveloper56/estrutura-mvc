@@ -12,8 +12,12 @@ class Router {
         $controllerName = 'App\\Controllers\\'.ucfirst($controllerName).'Controller';
         $actionName     = $parts[1] ?? 'index';
 
+        #dd($controllerName, $actionName);
+
         if(!class_exists($controllerName)) {
-            throw new \Exception('Controller class not found: '.$controllerName);
+            $controller = new HttpErrorController();
+            $controller->notFound();
+            return;
         }
 
         $controller = new $controllerName();
