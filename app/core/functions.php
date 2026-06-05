@@ -5,7 +5,7 @@
  * 
  * @param mixed ...$vars - Variáveis a serem depuradas. Pode receber um número indefinido de argumentos.
  */
-function dd(...$vars) {
+function dd(mixed ...$vars): never {
     echo '<pre style="background: #333; color: #fff; padding: 50px; borrder-radius: 5px; font-size: 16px;">';
     echo '<strong>Debug Output:</strong><br><br>';
 
@@ -27,6 +27,11 @@ function dd(...$vars) {
 
     echo '</pre>';
     die();
+}
+
+function config(string $key, mixed $default = null): mixed {
+    $config = require __DIR__ . '/../config/config.php';
+    return $config[$key] ?? $default;
 }
 
 

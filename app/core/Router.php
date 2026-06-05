@@ -2,10 +2,10 @@
 namespace App\core;
 
 use App\Controllers\Errors\HttpErrorController;
-use App\Controllers\HomeController;
+#use App\Controllers\HomeController;
 
 class Router {
-    public function dispatch($url) {
+    public function dispatch(string $url): void {
         $url            = trim($url, '/');
         $parts          = $url ? explode('/', $url) : [];
         $controllerName = $parts[0] ?? 'Home';

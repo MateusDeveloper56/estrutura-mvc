@@ -2,7 +2,7 @@
 namespace App\Core;
 
 class Controller {
-    protected function view($view, $viewData = []) {
+    protected function view(string $view, array $viewData = []): void {
         $viewFile = __DIR__.'/../views/'.$view.'.php';
 
         if(!file_exists($viewFile)) {

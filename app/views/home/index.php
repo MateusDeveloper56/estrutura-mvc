@@ -8,8 +8,7 @@
 <body>
     <h1>Bem-vindo à Página Inicial</h1>
     <p>Esta é a página inicial do nosso site.</p>
-    <p>Meu nome é:  <?= $nome; ?></p>
-    <p>Minha idade é: <?= $idade; ?></p>
+    <p>Meu nome é:  <?= $nome ?? ''; ?></p>
 </body>
 </html>
 
