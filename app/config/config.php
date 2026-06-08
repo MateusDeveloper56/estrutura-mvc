@@ -1,7 +1,4 @@
 <?php 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
-$dotenv->load();
-
 return [
     'db' => [
         'host' => $_ENV['HOST'] ?? 'localhost',

@@ -2,11 +2,12 @@
 namespace App\core;
 
 use App\Controllers\Errors\HttpErrorController;
-#use App\Controllers\HomeController;
+use Symfony\Component\HttpFoundation\Request;
 
 class Router {
-    public function dispatch(string $url): void {
-        $url            = trim($url, '/');
+    public function dispatch(Request $request): void {
+        $string_url     = $request->query->get('url', '');
+        $url            = trim($string_url, '/');
         $parts          = $url ? explode('/', $url) : [];
         $controllerName = $parts[0] ?? 'Home';
         $controllerName = 'App\\Controllers\\'.ucfirst($controllerName).'Controller';
@@ -21,6 +22,7 @@ class Router {
         }
 
         $controller = new $controllerName();
+        $this->wireRequest($controller, $request);
 
         if(!method_exists($controller, $actionName)) {
             $controller = new HttpErrorController();
@@ -33,6 +35,12 @@ class Router {
 
         // Chamada dinâmica do método com parâmetros
         call_user_func_array([$controller, $actionName], $params);
+    }
+
+    private function wireRequest(Object $controller, Request $request): void {
+        if($controller instanceof Controller) {
+            $controller->setRequest($request);
+        }
     }
 }
 
